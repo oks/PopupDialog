@@ -31,7 +31,9 @@ import UIKit
 final public class PopupDialogContainerView: UIView {
 
     // MARK: - Appearance
-
+    
+   @objc public static var insets = UIEdgeInsetsMake(0, 20, 0, 20)
+    
     /// The background color of the popup dialog
     override public dynamic var backgroundColor: UIColor? {
         get { return container.backgroundColor }
@@ -141,7 +143,7 @@ final public class PopupDialogContainerView: UIView {
 
         // Shadow container constraints
         let screenWidth = UIScreen.main.bounds.size.width
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=0,==20@900)-[shadowContainer(<=\(screenWidth),>=300)]-(>=0,==20@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=0,==\(PopupDialogContainerView.insets.left)@900)-[shadowContainer(<=\(screenWidth),>=300)]-(>=0,==\(PopupDialogContainerView.insets.right)@900)-|", options: [], metrics: nil, views: views)
         constraints += [NSLayoutConstraint(item: shadowContainer, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)]
         centerYConstraint = NSLayoutConstraint(item: shadowContainer, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
         
